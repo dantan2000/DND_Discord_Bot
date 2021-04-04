@@ -1,8 +1,8 @@
+import config
 import discord
 import random
 from discord.ext import commands
 
-botToken = "ODI4MzU4NDUzMzQ4OTI1NDcy.YGoa7Q.Hm_WGwuoakSLytlG4u35lp4rQiE"
 
 client = commands.Bot(command_prefix = "$")
 
@@ -21,4 +21,4 @@ async def roll(ctx, numSides):
     except:
         await ctx.send("Usage: $roll [Int]")
 
-client.run(botToken)
+client.run(config.botToken)
