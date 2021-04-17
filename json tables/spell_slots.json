@@ -1,0 +1,22 @@
+[
+    {"type": "Wizard", "level": 1, "slots": [3, 2]},
+    {"type": "Wizard", "level": 2, "slots": [3, 3]},
+    {"type": "Wizard", "level": 3, "slots": [3, 4, 2]},
+    {"type": "Wizard", "level": 4, "slots": [4, 4, 3]},
+    {"type": "Wizard", "level": 5, "slots": [4,4,3,2]},
+    {"type": "Wizard", "level": 6, "slots": [4,4,3,3]},
+    {"type": "Wizard", "level": 7, "slots": [4,4,3,3,1]},
+    {"type": "Wizard", "level": 8, "slots": [4,4,3,3,2]},
+    {"type": "Wizard", "level": 9, "slots": [4,4,3,3,3,1]},
+    {"type": "Wizard", "level": 10, "slots": [5,4,3,3,3,2]},
+    {"type": "Wizard", "level": 11, "slots": [5,4,3,3,3,2,1]},
+    {"type": "Wizard", "level": 12, "slots": [5,4,3,3,3,2,1]},
+    {"type": "Wizard", "level": 13, "slots": [5,4,3,3,3,2,1,1]},
+    {"type": "Wizard", "level": 14, "slots": [5,4,3,3,3,2,1,1]},
+    {"type": "Wizard", "level": 15, "slots": [5,4,3,3,3,2,1,1,1]},
+    {"type": "Wizard", "level": 16, "slots": [5,4,3,3,3,2,1,1,1]},
+    {"type": "Wizard", "level": 17, "slots": [5,4,3,3,3,2,1,1,1,1]},
+    {"type": "Wizard", "level": 18, "slots": [5,4,3,3,3,3,1,1,1,1]},
+    {"type": "Wizard", "level": 19, "slots": [5,4,3,3,3,3,2,1,1,1]},
+    {"type": "Wizard", "level": 20, "slots": [5,4,3,3,3,3,2,2,1,1]}
+]
