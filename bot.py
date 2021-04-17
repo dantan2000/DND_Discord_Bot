@@ -2,6 +2,8 @@ import config
 import discord
 import random
 from discord.ext import commands
+import Types.py
+
 
 
 client = commands.Bot(command_prefix = "$")
