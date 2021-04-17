@@ -1,0 +1,25 @@
+[
+    {"name": "Fighter", 
+        "description": "Warrior class etc etc", 
+        "hit dice": 10,
+        "equipment" :
+        [["Chain Mail", "Leather Armor, Longbow, 20 Arrows"], ["Martial Weapon, Shield", "Two Martial Weapons"],
+        ["Light CrossBow and 20 bolts", "Two Handaxes"], ["Dungeoneer's Pack", "Explorer's Pack"]],
+        "saving throws": ["Strength", "Constitution"],
+        "skill options": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
+        "num skills": 2,
+        "spellcasting abilitiy": null,
+        "proficiencies": ["Light, Medium, Heavy Armor", "Shields", "Simple Weapons", "Martial Weapons"],
+        "level up table": null},
+    {"name": "Wizard", 
+        "description": "Intelligence Caster", 
+        "hit dice": 6,
+        "equipment" :
+        [["QuarterStaff", "Dagger"], ["Component Pouch", "Arcane Focus"], ["Scholar's Pack", "Explorer's Pack"], ["Spellbook"]],
+        "saving throws": ["Intelligence", "Wisdom"],
+        "skill options": ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"],
+        "num skills": 2,
+        "spellcasting abilitiy": "Intelligence",
+        "proficiencies": ["Daggers", "Darts", "Slings", "Quarterstaffs","Light Crossbows"],
+        "level up table": null}
+]
