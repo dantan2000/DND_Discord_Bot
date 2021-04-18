@@ -9,7 +9,7 @@
         "skill options": ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
         "num skills": 2,
         "spellcasting abilitiy": null,
-        "proficiencies": ["Light, Medium, Heavy Armor", "Shields", "Simple Weapons", "Martial Weapons"],
+        "proficiencies": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields", "Simple Weapons", "Martial Weapons"],
         "levels": [
             {"proficiency bonus": 2, "features": ["Fighting Style", "Second Wind"]},
             {"proficiency bonus": 2, "features": ["Action Surge (1)"]},
