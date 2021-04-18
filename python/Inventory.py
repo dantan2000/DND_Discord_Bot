@@ -1,4 +1,4 @@
-import Item.py
+import Item
 
 class Inventory:
     def __init__(self, gold, items):
@@ -37,7 +37,7 @@ class Inventory:
         except KeyError:
             self.items[item.i_name] = (item, qty)
     
-    def removeItem(self, itemName, qty)
+    def removeItem(self, itemName, qty):
         for iName in self.items:
             item_qty = self.items[iName]
             if item_qty[0].i_name.lower() == itemName.lower():

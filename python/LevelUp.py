@@ -1,7 +1,9 @@
-import Character.py
+import Character
+import SpellSlots
+
 class LevelUpRow:
 
-    def __init__(self, profBonus, features, spellSlots = makeSpellSlots())
+    def __init__(self, profBonus, features, spellSlots = SpellSlots.makeSpellSlots()):
         self.profBonus = profBonus
         self.spellSlots = spellSlots
         self.features = features

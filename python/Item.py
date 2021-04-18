@@ -1,4 +1,4 @@
-import DiceRoll.py
+import DiceRoll
 
 class Item:
     

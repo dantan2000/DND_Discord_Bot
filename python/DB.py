@@ -1,4 +1,6 @@
 import Skill.py
+import Class.py
+import LevelUp.py
 
 skills = [
     Skill(Types.ACROBATICS, "Acrobatics checks.", Types.DEX),
@@ -52,3 +54,46 @@ def getAbility(abilityName):
         if a.a_name.lower() == abilityName.lower():
             return a
     raise KeyError(f"Cannot find ability with name {abilityName}")
+
+
+proficiencies = [
+    Proficiency(Types.STR, "Proficiency for Strength Saving Throws."),
+    Proficiency(Types.DEX, "Proficiency for Dexterity Saving Throws."),
+    Proficiency(Types.CON, "Proficiency for Constitution Saving Throws."),
+    Proficiency(Types.INT, "Proficiency for Intelligence Saving Throws."),
+    Proficiency(Types.WIS, "Proficiency for Wisdom Saving Throws."),
+    Proficiency(Types.CHA, "Proficiency for Charisma Saving Throws."),
+    Proficiency(Types.ACROBATICS, "Proficiency for Acrobatics Skill Checks."),
+    Proficiency(Types.ANIMAL_HANDLING, "Proficiency for Animal Handling Skill Checks."),
+    Proficiency(Types.Arcana, "Proficiency for Arcana Skill Checks."),
+    Proficiency(Types.ATHLETICS, "Proficiency for Athletics Skill Checks."),
+    Proficiency(Types.DECEPTION, "Proficiency for Deception Skill Checks."),
+    Proficiency(Types.HISTORY, "Proficiency for History Skill Checks."),
+    Proficiency(Types.INSIGHT, "Proficiency for Insight Skill Checks."),
+    Proficiency(Types.INTIMIDATION, "Proficiency for Intimidation Skill Checks."),
+    Proficiency(Types.INVESTIGATION, "Proficiency for Investigation Skill Checks."),
+    Proficiency(Types.MEDICINE, "Proficiency for Medicine Skill Checks."),
+    Proficiency(Types.NATURE, "Proficiency for Nature Skill Checks."),
+    Proficiency(Types.PERCEPTION, "Proficiency for Perception Skill Checks."),
+    Proficiency(Types.PERFORMANCE, "Proficiency for Performance Skill Checks."),
+    Proficiency(Types.PERSUASION, "Proficiency for Persuasion Skill Checks."),
+    Proficiency(Types.RELIGION, "Proficiency for Religion Skill Checks."),
+    Proficiency(Types.SLIGHT_OF_HAND, "Proficiency for Slight of Hand Skill Checks."),
+    Proficiency(Types.STEALTH, "Proficiency for Stealth Skill Checks."),
+    Proficiency(Types.SURVIVAL, "Proficiency for Survival Skill Checks.")
+]
+
+
+# TODO: get Proficiencies from DB
+# TODO: enumerate proficiencies
+def getProficiency(proficiency):
+    for prof in proficiencies:
+        if prof.p_name.lower() == proficiency.lower():
+            return prof
+    raise KeyError(f"Cannot find proficiency with name {proficiency}")
+
+classes = [
+    Class("Fighter", 10, [Types.ARMOR, Types.SHIELD, Types.SIMPLE_WEAPON, Types.MARTIAL_WEAPON, Types.STR, Types.CON], 2, [Skill.s_acrobatics, Skill.s_animalHandling, Skill.s_athletics, Skill.s_history, Skill.s_insight, Skill.s_intimidation, Skill.s_perception, Skill.s_survival], [
+        
+    ])
+]

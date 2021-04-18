@@ -5,9 +5,11 @@ import LevelUp.py
 
 class Class:
 
-    def __init__(hitDie, proficiencies, skills, levelUpTable):
+    def __init__(className, hitDie, proficiencies, numSkills, skills, levelUpTable):
+        self.className = className
         self.hitDie = hitDie
         self.proficiencies = proficiencies
+        self.numSkills = numskills
         self.skills = skills
         self.levelUpTable = levelUpTable
 
@@ -16,8 +18,9 @@ class Class:
             character.selectSkills(self.skills)
         levelUpRow = self.levelUpTable[character.c_lvl]
         levelUpRow.levelUp(character)
+        character.c_lvl += 1
 
-        
+ 
         
 
 class Fighter(Class):
