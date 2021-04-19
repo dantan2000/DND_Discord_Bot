@@ -1,0 +1,8 @@
+[
+    {"name": "Fighting Style", "description": "Choose from one of six fighting styles: Archery,Defense, Dueling, Great Weapon Fighting, Protection, and Two-Weapo Fighting"},
+    {"name": "Second Wind", "description": "Once per rest, you can use a bonus action to regain 1d10 + level of hit points"},
+    {"name": "Action Surge", "description": "Once per rest, you can gain an extra action or bonus action on a turn"},
+    {"name": "Spellcasting", "description":"Spellcasting gives access to a spellbook starting with 3 cantrips and 6 first level spells."},
+    {"name": "Arcane Recovery", "description":"Recover up to half your level (rounded up) spell slots each short rest"},
+    {"name": "Arcane Tradition", "description":"Choose one of eight schools: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, or Transmutation"}
+]

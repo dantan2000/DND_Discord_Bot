@@ -1,5 +1,6 @@
 [
-    {"name": "Human",
+    {
+        "name": "Human",
         "description": "Human Being",
         "size": "Medium",
         "speed": 30,
