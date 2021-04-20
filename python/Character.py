@@ -59,7 +59,7 @@ class Character:
         return retStr
 
     def isComplete(self):
-        return self.c_class is not None and self.c_lvl != 0 and self.c_race is not None and self.c_alignment is not None and self.c_str != 0 and self.c_dex != 0 and self.c_con != 0 and self.c_int != 0 and self.c_wis != 0 and self.c_cha != 0 and self.c_maxHit != 0 and len(self.c_abil) != 0 and len(self.c_prof != 0)
+        return self.c_class is not None and self.c_lvl != 0 and self.c_race is not None and self.c_str != 0 and self.c_dex != 0 and self.c_con != 0 and self.c_int != 0 and self.c_wis != 0 and self.c_cha != 0 and self.c_maxHit != 0 and len(self.c_abil) != 0 and len(self.c_profs) != 0 # and self.c_alignment is not None
 
 
     def completeRequirements(self):
@@ -71,8 +71,8 @@ class Character:
             requirements += listStr + f"Cannot be level {self.c_lvl}"
         if self.c_race is None:
             requirements += listStr + "No Race"
-        if self.c_alignment is None:
-            requirements += listStr + "No Alignment"
+        # if self.c_alignment is None:
+        #     requirements += listStr + "No Alignment"
         if self.c_str == 0:
             requirements += listStr + "No Strength Ability Score"
         if self.c_dex == 0:

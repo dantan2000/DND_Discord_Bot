@@ -333,11 +333,8 @@ def openCharacter(characterName):
 
 # TODO: Save a character to the DB
 def saveCharacter(character):
-    myquery = { "name": { "$regex": raceName, "$options" : "i"} }
     if not character.isComplete():
         raise ValueError(f"Cannot save character -- Character creation is not complete.\n  - Remaining Requirements:\n{character.completeRequirements()}")
-    
-    deleteCharacter(character.c_name)
 
     profs = []
     for p in character.c_profs:
@@ -346,6 +343,10 @@ def saveCharacter(character):
     abls = []
     for a in character.c_abil:
         abls.append(a.a_name)
+
+    inv = []
+    for iName in character.c_inv.items:
+        inv.append([iName, character.c_inv.items[iName][1]])
 
     doc = {
         "user": character.p_name,
@@ -368,15 +369,20 @@ def saveCharacter(character):
         "gold": character.c_inv.gold,
         "equipped armor": character.c_inv.donnedArmor,
         "equipped weapons": [],
-        "inventory": character.c_inv.items
+        "inventory": inv
     }
 
-    characters.insert_one(doc)
-
+    
+    myquery = { "name": { "$regex": character.c_name, "$options" : "i"} }
+    if characters.find_one(myquery) is None:
+        characters.insert_one(doc)
+    else:
+        setquery = {"$set": doc}
+        characters.update_many(myquery, setquery)
 
 
 def deleteCharacter(characterName):
-    myquery = { "name": { "$regex": character.c_name, "$options" : "i"} }
+    myquery = { "name": { "$regex": characterName, "$options" : "i"} }
     return characters.delete_many(myquery)
     # raise NotImplementedError("Delete character not implemented.")
 

@@ -21,6 +21,8 @@
         "gold": 0,
         "equipped armor": ["Leather Armor"],
         "equipped weapons": ["BattleAxe","GreatAxe", "HandAxe","Handaxe"],
-        "inventory": ["Explorer's Pack"]
+        "inventory": [
+            ["Explorer's Pack", 1]
+        ]
     }
 ]
