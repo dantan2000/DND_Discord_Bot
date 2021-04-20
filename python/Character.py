@@ -104,6 +104,12 @@ class Character:
         skillList = skills[1]
         # TODO: Prompt and get which skills to select
 
+    def hasAbility(self, abil):
+        for a in self.c_abil:
+            if abil.a_name.lower() == a.a_name.lower():
+                return True
+        return False
+
     def addAbility(self, abil):
         self.c_abil.append(abil)
 

@@ -491,9 +491,10 @@ async def addMaxHP(ctx, hp):
         await ctx.send(f"Error: HP must be an Integer.")
 
 @client.command(aliases = ('addAbility', 'addFeature'))
-async def addAbilityFeature(ctx, abil):
+async def addAbilityFeature(ctx, *args):
     global player_character
     currPlayer = ctx.author
+    abil = makeInputString(args)
     try:
         openedCharacter = player_character[currPlayer]
     except KeyError:
@@ -501,15 +502,19 @@ async def addAbilityFeature(ctx, abil):
         return
     try:
         newAbil = DB.getAbility(abil)
-        if newAbil not in openedCharacter.c_abil:
+        if not openedCharacter.hasAbility(newAbil):
             openedCharacter.c_abil.append(newAbil)
+            await ctx.send(f"{newAbil.a_name} successfully added!")
+        else: 
+            await ctx.send(f"{openedCharacter.c_name} already has {newAbil.a_name}")
     except KeyError:
         await ctx.send(f"Cannot find Feature/Ability: {feat}")
 
 @client.command()
-async def addProficiency(ctx, prof):
+async def addProficiency(ctx, *args):
     global player_character
     currPlayer = ctx.author
+    prof = makeInputString(args)
     try:
         openedCharacter = player_character[currPlayer]
     except KeyError:
@@ -597,10 +602,10 @@ async def removeItem(ctx, *args):
         openedCharacter = player_character[currPlayer]
         # Check if there are arguments
         if len(args) == 0:
-            await ctx.send("Usage: $addItem <itemName> [qty = 1]")
+            await ctx.send("Usage: $removeItem <itemName> [qty = 1]")
             return
     except KeyError:
-        noOpenCharacter(ctx, "$addItem", currPlayer)
+        noOpenCharacter(ctx, "$removeItem", currPlayer)
 
     # Check if the last argument is a quantity (int)
     try:
@@ -619,6 +624,7 @@ async def removeItem(ctx, *args):
 
     try:
         openedCharacter.c_inv.removeItem(itemName, qty)
+        await ctx.send(f"{openedCharacter.c_name} discarded {qty} {itemName}(s)!")
     except (KeyError, ValueError) as e:
         await ctx.send(f"Error: {e}")
 

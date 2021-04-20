@@ -56,25 +56,7 @@ def splitRollString(rollStr):
 #     Skill.Skill(Types.CON, "Proficiency for Constitution Saving Throws.", Types.CON),
 #     Skill.Skill(Types.INT, "Proficiency for Intelligence Saving Throws.", Types.INT),
 #     Skill.Skill(Types.WIS, "Proficiency for Wisdom Saving Throws.", Types.WIS),
-#     Skill.Skill(Types.CHA, "Proficiency for Charisma Saving Throws.", Types.CHA),
-#     Skill.Skill(Types.ACROBATICS, "Acrobatics checks.", Types.DEX),
-#     Skill.Skill(Types.ANIMAL_HANDLING, "Animal handling checks.", Types.WIS),
-#     Skill.Skill(Types.ARCANA, "Arcana checks.", Types.INT),
-#     Skill.Skill(Types.ATHLETICS, "Athletics checks.", Types.STR),
-#     Skill.Skill(Types.DECEPTION, "Deception checks.", Types.CHA),
-#     Skill.Skill(Types.HISTORY, "History checks.", Types.INT),
-#     Skill.Skill(Types.INSIGHT, "Insight checks.", Types.WIS),
-#     Skill.Skill(Types.INTIMIDATION, "Intimidation checks.", Types.CHA),
-#     Skill.Skill(Types.INVESTIGATION, "Investigation checks.", Types.INT),
-#     Skill.Skill(Types.MEDICINE, "Medicine checks.", Types.WIS),
-#     Skill.Skill(Types.NATURE, "Nature checks.", Types.INT),
-#     Skill.Skill(Types.PERCEPTION, "Perception checks.", Types.WIS),
-#     Skill.Skill(Types.PERFORMANCE, "Performance checks.", Types.CHA),
-#     Skill.Skill(Types.PERSUASION, "Persuasion checks.", Types.CHA),
-#     Skill.Skill(Types.RELIGION, "Religion checks.", Types.INT),
-#     Skill.Skill(Types.SLIGHT_OF_HAND, "Slight of Hand checks.", Types.DEX),
-#     Skill.Skill(Types.STEALTH, "Stealth checks.", Types.DEX),
-#     Skill.Skill(Types.SURVIVAL, "Survival checks.", Types.WIS)
+#     Skill.Skill(Types.CHA, "Proficiency for Charisma Saving Throws.", Types.CHA)
 # ]
 
 def getSkillTypes(skillType):
@@ -146,7 +128,7 @@ def getProficiency(proficiencyName):
             return p
     try:
         tmpSkill = getSkillCheck(proficiencyName)
-        return Skill.Proficiency(tmpSkill.s_type, f"Proficiency for {tmpSkill.s_type} Skill Checks")
+        return Skill.Proficiency(tmpSkill.s_name, f"Proficiency for {tmpSkill.s_type} Skill Checks")
     except KeyError:
         pass
         # raise KeyError(f"Cannot find proficiency with name {proficiency}")

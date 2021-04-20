@@ -1,4 +1,10 @@
 [
+    {"name": "Strength", "type": "Strength"},
+    {"name": "Dexterity", "type":"Dexterity"},
+    {"name": "Constitution", "type":"Constitution"},
+    {"name": "Intelligence", "type":"Intelligence"},
+    {"name": "Wisdom", "type": "Wisdom"},
+    {"name": "Charisma", "type": "Charisma"},
     {"name": "Acrobatics", "type": "Dexterity"},
     {"name": "Animal Handling", "type": "Wisdom"},
     {"name": "Arcana", "type": "Intelligence"},

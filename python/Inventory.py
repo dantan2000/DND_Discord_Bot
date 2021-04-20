@@ -38,22 +38,24 @@ class Inventory:
 
     def addItem(self, item, qty):
         try:
-            self.items[item.i_name] = (item, self.items[item.i_name][1] + qty)
+            self.items[item.i_name] = [item, self.items[item.i_name][1] + qty]
         except KeyError:
-            self.items[item.i_name] = (item, qty)
+            self.items[item.i_name] = [item, qty]
     
     def removeItem(self, itemName, qty):
-        for iName in self.items:
-            item_qty = self.items[iName]
-            if item_qty[0].i_name.lower() == itemName.lower():
-                if item_qty[1] - qty > 0:
-                    item_qty[1] -= qty
-                elif item_qty[1] - qty == 0:
-                    self.items.pop(iName)
-                    return
-                else:
-                    raise ValueError(f"Cannot remove {qty} {item_qty[0].i_name}(s). Only have {item_qty[1]}")
-        raise KeyError(f"Item {itemName} not owned.")
+        try:
+            for iName in self.items:
+                item_qty = self.items[iName]
+                if item_qty[0].i_name.lower() == itemName.lower():
+                    if item_qty[1] - qty > 0:
+                        item_qty[1] = item_qty[1] - qty
+                    elif item_qty[1] - qty == 0:
+                        self.items.pop(iName)
+                        return
+                    else:
+                        raise ValueError(f"Cannot remove {qty} {item_qty[0].i_name}(s). Only have {item_qty[1]}")
+        except KeyError:
+            raise KeyError(f"Item {itemName} not owned.")
             
     def addGold(self, qty):
         newBal = self.gold + qty
