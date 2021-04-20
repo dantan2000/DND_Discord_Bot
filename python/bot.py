@@ -164,7 +164,7 @@ def makeInputString(args):
 
 
 @client.command()
-async def open(ctx, *args)
+async def open(ctx, *args):
     global player_character
     currPlayer = ctx.author
     characterName = makeInputString(args)
@@ -179,13 +179,13 @@ async def open(ctx, *args)
     try:
         newCharacter = DB.openCharacter(characterName)
         player_character[currPlayer] = newCharacter
-        await ctx.send(f"{currPlayer.split("#")[0]} is now playing as {newCharacter.c_name}!")
+        await ctx.send(f"{currPlayer} is now playing as {newCharacter.c_name}!")
     except Exception as e:
         await ctx.send(f"Error: {e}")
 
 
 @client.command()
-async def close(ctx, *args)
+async def close(ctx, *args):
     global player_character
     currPlayer = ctx.author
     save = makeInputString(args)
@@ -245,7 +245,10 @@ async def deleteCharacter(ctx, *args):
     except Exception as e:
         await ctx.send(f"Error: {e}")
 
-
+@client.command()
+async def getInfo(ctx, *args):
+    name = makeInputString(args)
+    await ctx.send(DB.getInfo(name))
 
 @client.command()
 async def createCharacter(ctx, *args):

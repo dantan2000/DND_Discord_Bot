@@ -33,7 +33,7 @@ class Item:
         return False
 
     def getInfo(self):
-        ret = f"Item -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret = f"Item -- {self.i_name}:        Types: {self.i_types}    Value: {self.i_value}"
         ret += f"\n   Description: {self.i_desc}"
         return ret
 
@@ -41,8 +41,8 @@ class Weapon(Item):
 
     def __init__(self, i_name, i_desc, i_value, i_types, numRolls, numSides, hitMod = 0, dmgMod = 0):
         super().__init__(i_name, i_desc, i_value, i_types)
-        self.hitRoll = DiceRoll.DiceRoll(1, 20, hitMod)
-        self.dmgRoll = DiceRoll.DiceRoll(1, numSides, dmgMod)
+        self.hitRoll = DiceRoll.DiceRoll(1, 20, [hitMod])
+        self.dmgRoll = DiceRoll.DiceRoll(1, numSides, [dmgMod])
 
     def rollHit(self):
         return self.hitRoll.roll()
@@ -51,11 +51,9 @@ class Weapon(Item):
         return self.dmgRoll.roll()
 
     def getInfo(self):
-        ret = f"Weapon -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret = f"Weapon -- {self.i_name}:        Types: {self.i_types}    Value: {self.i_value}"
         ret += f"\n   Description: {self.i_desc}"
-        ret += f"\n   Hit modifier: {self.hitMod}  Damage: {self.numRolls}d{self.numSides}"
-        if dmgMod != 0:
-            ret += f" + {self.dmgMod}"
+        ret += f"\n   To Hit: {self.hitRoll} Damage: {self.dmgRoll}"
         return ret
 
 class Armor(Item):
@@ -67,7 +65,7 @@ class Armor(Item):
         return self.armorClass
 
     def getInfo(self):
-        ret = f"Armor -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret = f"Armor -- {self.i_name}:        Types: {self.i_types}    Value: {self.i_value}"
         ret += f"\n   Description: {self.i_desc}"
         ret += f"\n   Armor Class: {self.armorClass}"
         return ret
