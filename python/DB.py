@@ -7,6 +7,7 @@ import Character
 import pymongo
 import config
 import Inventory
+import Race
 
 myclient = pymongo.MongoClient(config.dbURL)
 mydb = myclient["discord"]
@@ -89,7 +90,7 @@ def getSkillCheck(skillName):
     skill = skills.find_one(myquery)
 
     if skill is None:
-        raise ValueError(f"No skill found with name {skillName}")
+        raise KeyError(f"No skill found with name {skillName}")
 
     skillType = getSkillTypes(skill["type"])
 
@@ -144,7 +145,7 @@ def getProficiency(proficiencyName):
         if p.p_name.lower() == proficiencyName.lower():
             return p
     try:
-        tmpSkill = getSkill(proficiencyName)
+        tmpSkill = getSkillCheck(proficiencyName)
         return Skill.Proficiency(tmpSkill.s_type, f"Proficiency for {tmpSkill.s_type} Skill Checks")
     except KeyError:
         pass
@@ -300,14 +301,14 @@ def getAlignment(alignmentName):
 
 
 # TODO: Get character from DB and convert it into Character
-def openCharater(characterName):
-    myquery = { "name": { "$regex": raceName, "$options" : "i"} }
+def openCharacter(characterName):
+    myquery = { "name": { "$regex": characterName, "$options" : "i"} }
     character = characters.find_one(myquery)
 
     if character is None:
         raise KeyError(f"No character found with name {characterName}")
 
-    inv = Inventory(character[gold], {})
+    inv = Inventory.Inventory(int(character["gold"]), {})
     for item_qty in character["inventory"]:
         try:
             item = getItem(item_qty[0])

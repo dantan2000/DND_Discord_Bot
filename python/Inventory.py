@@ -70,7 +70,8 @@ class Inventory:
     def __str__(self):
         returnStr = ""
         returnStr += f"{self.gold} gp\n"
-        for item_qty in self.items:
+        for iName in self.items:
+            item_qty = self.items[iName]
             item = item_qty[0]
             qty = item_qty[1]
             returnStr += f"{item.i_name}  -- qty: {qty}\n"

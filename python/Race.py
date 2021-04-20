@@ -22,3 +22,6 @@ class Race:
         ret += f"Languages: {self.r_languages}"
         ret += f"Traits: {self.r_traits}"
         return ret
+
+    def __str__(self):
+        return self.r_name
