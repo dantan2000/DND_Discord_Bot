@@ -417,7 +417,7 @@ async def setProfBonus(ctx, bonus):
         await ctx.send(f"Error: Proficiency Bonus must be an Integer.")
 
 @client.command()
-async def setAlignment(ctx, align):
+async def setAlignment(ctx, align, align2):
     global player_character
     currPlayer = ctx.author
     try:
@@ -426,12 +426,12 @@ async def setAlignment(ctx, align):
         await noOpenCharacter(ctx, "$setAlignment", currPlayer)
         return
     try:
-        align = DB.getAlignment(align)
+        align = DB.getAlignment(align + " " + align2)
         if openedCharacter.c_alignment is None:
             openedCharacter.c_alignment = align.a_name
             await ctx.send(f"{openedCharacter.c_name} has Alignment {align.a_name}")
         else:
-            await ctx.send(f"{openedCharacter.c_name} alrady has Alignment {openedChacarter.c_alignment}")
+            await ctx.send(f"{openedCharacter.c_name} already has Alignment {openedCharacter.c_alignment}")
     except KeyError:
         await ctx.send(f"Cannot find Alignment: {align}")
 
