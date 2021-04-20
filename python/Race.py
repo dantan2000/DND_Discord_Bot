@@ -11,3 +11,12 @@ class Race:
         self.r_languages = r_languages
         self.r_traits = r_traits
 
+    def getInfo(self):
+        ret = f"Race -- {self.r_name}"
+        ret += f"\nSize - {self.r_size}"
+        ret += f"\nSpeed - {self.r_speed}"
+        ret += f"\nAbility Modifiers: {self.r_abilityMods}"
+        ret += f"\nProficiencies: {self.r_profs}"
+        ret += f"Languages: {self.r_languages}"
+        ret += f"Traits: {self.r_traits}"
+        return ret

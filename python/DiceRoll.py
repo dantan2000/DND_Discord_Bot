@@ -21,3 +21,6 @@ class DiceRoll:
             if mod != 0:
                 modString += f" + {mod}"
         return f"{self.numRolls}d{self.numSides}{modString}"
+
+    def __str__(self):
+        return self.toString()

@@ -32,6 +32,11 @@ class Item:
                 return True
         return False
 
+    def getInfo(self):
+        ret = f"Item -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret += f"\n   Description: {self.i_desc}"
+        return ret
+
 class Weapon(Item):
 
     def __init__(self, i_name, i_desc, i_value, i_types, numRolls, numSides, hitMod = 0, dmgMod = 0):
@@ -45,6 +50,14 @@ class Weapon(Item):
     def rollDmg(self):
         return self.dmgRoll.roll()
 
+    def getInfo(self):
+        ret = f"Weapon -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret += f"\n   Description: {self.i_desc}"
+        ret += f"\n   Hit modifier: {self.hitMod}  Damage: {self.numRolls}d{self.numSides}"
+        if dmgMod != 0:
+            ret += f" + {self.dmgMod}"
+        return ret
+
 class Armor(Item):
     def __init__(self, i_name, i_desc, i_value, i_types, armorClass):
         super().__init__(i_name, i_desc, i_value, i_types)
@@ -52,3 +65,9 @@ class Armor(Item):
 
     def getArmorClass(self):
         return self.armorClass
+
+    def getInfo(self):
+        ret = f"Armor -- {self.i_name}: Types: {self.i_types}    Value: {self.i_value}"
+        ret += f"\n   Description: {self.i_desc}"
+        ret += f"\n   Armor Class: {self.armorClass}"
+        return ret

@@ -153,3 +153,17 @@ def getAlignment(alignmentName):
         if alignmentName.lower() == a.a_name.lower():
             return a
     raise KeyError(f"No Alignment of name {alignmentName}")
+
+
+# TODO: Get character from DB and convert it into Character
+def openCharater(characterName):
+    raise KeyError(f"Cannot find a character named {characterName}")
+
+# TODO: Save a character to the DB
+def saveCharacter(character):
+    if not character.isComplete():
+        raise ValueError(f"Cannot save character -- Character creation is not complete.\n  - Remaining Requirements:\n{character.completeRequirements()}")
+    raise NotImplementedError("Save character not implemented.")
+
+# TODO: Get Item/Ability/Class/etc. info from database
+def getInfo(name):

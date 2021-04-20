@@ -6,13 +6,15 @@ import LevelUp
 
 class Class:
 
-    def __init__(self, className, hitDie, proficiencies, numSkills, skills, levelUpTable):
+    def __init__(self, className, desc, hitDie, proficiencies, numSkills, skills, levelUpTable, spellcastAbility = None):
         self.className = className
+        self.desc = desc
         self.hitDie = hitDie
         self.proficiencies = proficiencies
         self.numSkills = numSkills
         self.skills = skills
         self.levelUpTable = levelUpTable
+        self.spellcastAbility = spellcastAbility
 
     def levelUp(self, character):
         if character.c_lvl == 0:
@@ -26,12 +28,22 @@ class Class:
             return SpellSlots.makeSpellSlots()
         return self.levelUpTable[level - 1].spellSlots
 
-    # TODO: find a good way to make class descriptions
     def __str__(self):
         return self.className
 
+    def getInfo(self):
+        ret = f"Class -- {self.className}"
+        ret += f"\n   Description: {self.desc}"
+        ret += f"\n   Hit Die: d{self.hitDie}"
+        ret += f"\n   Proficiencies: {self.proficiencies}"
+        ret += f"\n   Skills: (Pick {self.numSkills}) {self.skills}"
+        if self.spellcastAbility is not None:
+            ret += f"\n   Spellcasting Ability: {self.spellcastAbility}"
+        return ret
+
  
         
+
 
 # class Fighter(Class):
 #     hitDie = 10

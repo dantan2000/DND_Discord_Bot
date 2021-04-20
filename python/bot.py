@@ -153,6 +153,85 @@ async def unexpectedCallback(ctx, cmd, currPlayer):
 async def noOpenCharacter(ctx, cmd, currPlayer):
     await ctx.send(f"Error {cmd}: No character opened for {str(currPlayer).split('#')[0]}")
 
+# Given a list of words, combine them into a single string with each word seperated by spaces with no trailing spaces.
+def makeInputString(args):
+    input = ""
+    for arg in args:
+        input += arg + " "
+    if len(input) > 0:
+        input = input [:len(input) - 1]
+    return input
+
+
+@client.command()
+async def open(ctx, *args)
+    global player_character
+    currPlayer = ctx.author
+    characterName = makeInputString(args)
+    # Check if player already has a character open
+    try:
+        currCharacter = player_character[currPlayer]
+        await ctx.send(f"Error: Could not open {characterName}; you already have {currCharacter.c_name} open! Please close this character before opening a new one.")
+        return
+    except:
+        pass
+
+    try:
+        newCharacter = DB.openCharacter(characterName)
+        player_character[currPlayer] = newCharacter
+        await ctx.send(f"{currPlayer.split("#")[0]} is now playing as {newCharacter.c_name}!")
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+
+@client.command()
+async def close(ctx, *args)
+    global player_character
+    currPlayer = ctx.author
+    save = makeInputString(args)
+    # Check if player already has a character open
+    try:
+        currCharacter = player_character[currPlayer]
+    except:
+        await noOpenCharacter(ctx, "$close", currPlayer)
+        return
+
+    try: 
+        # Save if the save flag was set to "true"
+        saveMsg = ""
+        if save.lower() == "true":
+            DB.saveCharacter(currCharacter)
+            saveMsg = "saved and "
+        elif save.lower() == "false":
+            pass
+        else:
+            raise ValueError("Usage -- $close <True | False>")
+        # Delete player -> character pair
+        del player_character[currPlayer]
+        await ctx.send(f"{currCharacter.c_name} has been {saveMsg}closed.")
+    except ValueError as e:
+        await ctx.send(f"Error: {e}")
+        
+
+@client.command()
+async def save(ctx):
+    global player_character
+    currPlayer = ctx.author
+    save = makeInputString(args)
+    # Check if player already has a character open
+    try:
+        currCharacter = player_character[currPlayer]
+    except:
+        await noOpenCharacter(ctx, "$save", currPlayer)
+        return
+
+    try:
+        DB.saveCharacter(currCharacter)
+        await ctx.send(f"{currCharacter.c_name} has been saved!")
+    except ValueError as e:
+        await ctx.send(f"Error: {e}")
+
+
 @client.command()
 async def createCharacter(ctx, *args):
     global player_character, player_callback
