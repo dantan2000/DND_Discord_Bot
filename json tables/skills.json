@@ -1,0 +1,20 @@
+[
+    {"name": "Acrobatics", "type": "Dexterity"},
+    {"name": "Animal Handling", "type": "Wisdom"},
+    {"name": "Arcana", "type": "Intelligence"},
+    {"name": "Athletics", "type": "Strength"},
+    {"name": "Deception", "type": "Charisma"},
+    {"name": "History", "type": "Intelligence"},
+    {"name": "Insignt", "type":"Wisdom"},
+    {"name":"Intimidation","type":"Charisma"},
+    {"name":"Investigation", "type":"Intelligence"},
+    {"name": "Medicine", "type":"Wisdom"},
+    {"name":"Nature", "type":"Intelligence"},
+    {"name": "Perception", "type": "Wisdom"},
+    {"name":"Performance", "type":"Charisma"},
+    {"name": "Persuasion", "type":"Charisma"},
+    {"name": "Religion", "type":"Intelligence"},
+    {"name":"Sleight of Hand", "type":"Dexterity"},
+    {"name": "Stealth", "type":"Dexterity"},
+    {"name":"Survival", "type":"Wisdom"}
+]

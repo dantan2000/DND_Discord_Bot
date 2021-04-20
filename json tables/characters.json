@@ -1,0 +1,26 @@
+[
+    {
+        "user": "root",
+        "name": "Axel Axeman",
+        "race": "Human",
+        "class":"Fighter",
+        "level": 1,
+        "max health": 17,
+        "current health": 17,
+        "strength": 16,
+        "dexterity": 16,
+        "constitution": 16,
+        "intelligence": 9,
+        "wisdom": 9,
+        "charisma": 9,
+        "proficiencies": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields", "Simple Weapons", "Martial Weapons",
+            "Animal Handling", "Athletics", "Strength", "Constitution"],
+        "spells": [],
+        "abilities": ["Fighting Style", "Second Wind"],
+        "current spell slots": [0,0,0,0,0,0,0,0,0,0],
+        "gold": 0,
+        "equipped armor": ["Leather Armor"],
+        "equipped weapons": ["BattleAxe","GreatAxe", "HandAxe","Handaxe"],
+        "inventory": ["Explorer's Pack"]
+    }
+]

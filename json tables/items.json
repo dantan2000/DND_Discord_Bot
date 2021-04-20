@@ -1,0 +1,111 @@
+[
+    {
+        "name":"Quarterstaff",
+        "type": "weapon",
+        "weapontype": "simple",
+        "damage": {"amount":"1d6", "type":"bludgeoning"},
+        "properties": ["Versatile (1d8)"]
+    },
+    {
+        "name": "Dagger",
+        "type": "weapon",
+        "weapontype": "simple",
+        "damage": {"amount":"1d4", "type": "piercing"},
+        "properties":["Finesse", "Light", "Thrown(20/60)"]
+    },
+    {
+        "name": "Component Pouch",
+        "type":"equipment",
+        "description": "Small leather pouch that holds all material components needed to cast spells"
+    },
+    {
+        "name": "Arcane Focus",
+        "type": "equipment",
+        "description":"Special item that can be used to channel the power of arcane spells"
+    },
+    {
+        "name": "Scholar's Pack",
+        "type": "equipment",
+        "description": "Contains backpack, a book of lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife"
+    },
+    {
+        "name":"Explorer's Pack",
+        "type":"equipment",
+        "description": "Contains backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations,a waterskin, and a 50ft rope"
+    },
+    {
+        "name": "Spellbook",
+        "type":"equipment",
+        "description":"A leather-bound tome with 100 blank vellum pages suitable for recording spells"
+    },
+    {
+        "name":"Chainmail",
+        "type": "armor",
+        "description": "Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.",
+        "armortype": "heavy",
+        "armorclass": 16
+    },
+    {
+        "name":"Leather Armor",
+        "type":"armor",
+        "description":"The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil.",
+        "armortype":"light",
+        "armorclass": 11
+    },
+    {
+        "name": "Longbow",
+        "type": "weapon",
+        "weapontype": "martial",
+        "damage":{"amount":"1d8", "type":"piercing"},
+        "properties":["Ammunition (150/600)", "Heavy", "Two Handed"]
+    }, 
+    {
+        "name": "Arrows",
+        "type": "equipment",
+        "description":"Ammunition for bows"
+    },
+    {
+        "name": "Bolts",
+        "type": "equipment",
+        "description": "Ammunition for crossbows"
+    },
+    {
+        "name": "Shield",
+        "type": "armor",
+        "armortype": "shield",
+        "armorclass": 2
+    },
+    {
+        "name":"Light Crossbow",
+        "type":"weapon",
+        "weapontype": "simple",
+        "damage":{"amount":"1d8", "type":"piercing"},
+        "properties":["Ammunition (range 80/320)", "loading", "two-handed"]
+    },
+    {
+        "name":"Handaxe",
+        "type":"weapon",
+        "weapontype": "simple",
+        "damage":{"amount":"1d6", "type":"slashing"},
+        "properties":["Light", "Thrown(20/60)"]
+    },
+    {
+        "name":"BattleAxe",
+        "type":"weapon",
+        "weapontype":"martial",
+        "damage":{"amount":"1d8", "type":"slashing"},
+        "properties":["Versatile (1d10)"]
+    },
+    {
+        "name":"Lance",
+        "type":"weapon",
+        "weapontype":"martial",
+        "damage":{"amount":"1d12", "type":"piercing"},
+        "properties":["Reach", "Special"]
+    }, 
+    {
+        "name":"Dungeoneer's Pack",
+        "type":"equipment",
+        "description": "Includes a backpack, a crowbar, a hammer, 10 pitons, 10 torches, a tinderbox, 10 days of rations, a waterskin and 50 feet of rope."
+    }
+]
