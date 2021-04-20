@@ -15,3 +15,11 @@ def emptySpellSlots(spellSlots):
         if slot > 0:
             return False
     return True
+
+def dumpSpellSlots(spellSlots):
+    ret = ""
+    for i in range(len(spellSlots) - 1):
+        if i == 0:
+            ret += f"Cantrips: {spellSlots[i]}"
+        else:
+            ret += f"   Level {i}: {spellSlots[i]}"
