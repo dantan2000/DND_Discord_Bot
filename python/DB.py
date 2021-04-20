@@ -4,6 +4,7 @@ import LevelUp
 import Types
 import Item
 import Character
+import pymongo
 
 skills = [
     Skill.Skill(Types.STR, "Proficiency for Strength Saving Throws.", Types.STR),
@@ -165,5 +166,10 @@ def saveCharacter(character):
         raise ValueError(f"Cannot save character -- Character creation is not complete.\n  - Remaining Requirements:\n{character.completeRequirements()}")
     raise NotImplementedError("Save character not implemented.")
 
+def deleteCharacter(characterName):
+    raise NotImplementedError("Delete character not implemented.")
+
+
 # TODO: Get Item/Ability/Class/etc. info from database
 def getInfo(name):
+    raise NotImplementedError("getInfo not implemented.")
