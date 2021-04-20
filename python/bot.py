@@ -264,6 +264,7 @@ async def createCharacter(ctx, *args):
         await ctx.send("Error: Must give a character name")
         return
 
+    #checks if player has character opened
     try:
         openedCharacter = player_character[currPlayer]
         await ctx.send(f"Cannot create character; you already have {openedCharacter.c_name} open!")
@@ -276,9 +277,7 @@ async def createCharacter(ctx, *args):
         await ctx.send(f"Cannot create character {name}. A character with that name already exists!")
         return
     except KeyError:
-        setStrMsg = makeSetAbilityScoreMsg(SETSTR, Types.STR)
         player_character[currPlayer] = Character.Character(name, currPlayer)
-        player_callback[currPlayer] = ("", "")
         await ctx.send(f"Creating character {name}. Begin customizing!")
 
 @client.command()
@@ -287,12 +286,14 @@ async def setLevel(ctx, level):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
-        openedCharacter.c_str = int(level)
+        if int(level) < 1 or int(level) > 20 :
+            raise ValueError
+        openedCharacter.c_lvl = int(level)
         await ctx.send(f"Set {openedCharacter.c_name}'s Level to {level}")
     except KeyError:
         noOpenCharacter(ctx, "$setLevel", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Level Score must be an Integer.")
+        await ctx.send(f"Error: Level Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setStr(ctx, score):
@@ -300,12 +301,14 @@ async def setStr(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_str = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Strength to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setStr", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setDex(ctx, score):
@@ -313,12 +316,14 @@ async def setDex(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_dex = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Dexterity to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setDex", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setCon(ctx, score):
@@ -326,12 +331,14 @@ async def setCon(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_con = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Constitution to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setCon", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setInt(ctx, score):
@@ -339,12 +346,14 @@ async def setInt(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_int = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Intelligence to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setInt", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setWis(ctx, score):
@@ -352,12 +361,14 @@ async def setWis(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_wis = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Wisdom to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setWis", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 @client.command()
 async def setCha(ctx, score):
@@ -365,12 +376,14 @@ async def setCha(ctx, score):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(score) < 1 or int(score) > 20 :
+            raise ValueError
         openedCharacter.c_cha = int(score)
         await ctx.send(f"Set {openedCharacter.c_name}'s Charisma to {score}")
     except KeyError:
         noOpenCharacter(ctx, "$setCha", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: Ability Score must be an Integer.")
+        await ctx.send(f"Error: Ability Score must be an Integer between 1 and 20.")
 
 
 @client.command()
@@ -379,12 +392,15 @@ async def setMaxHP(ctx, hp):
     currPlayer = ctx.author
     try:
         openedCharacter = player_character[currPlayer]
+        if int(hp) < 0 :
+            raise ValueError
         openedCharacter.c_maxHit = int(hp)
+        openedCharacter.c_currHit = openedCharacter.c_maxHit
         await ctx.send(f"Set {openedCharacter.c_name}'s Maximum Hit Points to {hp}")
     except KeyError:
         noOpenCharacter(ctx, "$setMaxHP", currPlayer)
     except ValueError:
-        await ctx.send(f"Error: HP must be an Integer.")
+        await ctx.send(f"Error: HP must be an Integer greater than 0.")
 
 
 @client.command()
@@ -467,6 +483,7 @@ async def addMaxHP(ctx, hp):
     try:
         openedCharacter = player_character[currPlayer]
         openedCharacter.c_maxHit += int(hp)
+        openedCharacter.c_currHit = openedCharacter.c_maxHit
         await ctx.send(f"Set {openedCharacter.c_name}'s Maximum Hit Points to {openedChacarter.c_maxHit}")
     except KeyError:
         noOpenCharacter(ctx, "$addMaxHP", currPlayer)

@@ -52,7 +52,7 @@ class Character:
         if len(abilStr) == 0:
             abilStr = "None"
 
-        retStr = f"Name: {self.c_name}\nPlayer: {self.p_name}\nClass: {self.c_class}\nRace: {self.c_race}\nAlignment: {self.c_alignment}\nSTR: {self.c_str}\nDEX: {self.c_dex}\nCON: {self.c_con}\nINT: {self.c_int}\nWIS: {self.c_wis}\nCHA: {self.c_wis}\nAC: {self.getArmorClass()}\nInventory:\n{self.c_inv}\n\nFeatures & Traits:\n{abilStr}"
+        retStr = f"Name: {self.c_name}\nPlayer: {self.p_name}\nClass: {self.c_class}\n Level: {self.c_lvl}\n Race: {self.c_race}\nAlignment: {self.c_alignment}\nSTR: {self.c_str}\nDEX: {self.c_dex}\nCON: {self.c_con}\nINT: {self.c_int}\nWIS: {self.c_wis}\nCHA: {self.c_wis}\nAC: {self.getArmorClass()}\nInventory:\n{self.c_inv}\n\nFeatures & Traits:\n{abilStr}"
         # print(f"Character string: {retStr}")
         if not SpellSlots.emptySpellSlots(self.c_spellSlots):
             retStr += f"\nSpell Slots: {SpellSlots.dumpSpellSlots(self.c_spellSlots)}"

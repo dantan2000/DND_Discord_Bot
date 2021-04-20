@@ -243,7 +243,7 @@ def getAlignment(alignmentName):
 
 
 # TODO: Get character from DB and convert it into Character
-def openCharater(characterName):
+def openCharacter(characterName):
     raise KeyError(f"Cannot find a character named {characterName}")
 
 # TODO: Save a character to the DB
