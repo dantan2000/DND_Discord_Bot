@@ -1,5 +1,5 @@
-import Character
 import SpellSlots
+import copy
 
 class LevelUpRow:
 
@@ -8,11 +8,14 @@ class LevelUpRow:
         self.spellSlots = spellSlots
         self.features = features
 
-    def levelUp(self, character):
-        character.c_profBonus = self.profBonus
-        character.c_spellSlots = self.spellSlots
-        for feat in features:
-            applyFeature(character)
+    # def levelUp(self, character):
+    #     character.c_profBonus = self.profBonus
+    #     character.c_spellSlots = copy.copy(self.spellSlots)
+    #     for feat in features:
+    #         applyFeature(character)
+
+    def getSpellSlots(self):
+        return copy.copy(self.spellSlots)
     
 fighterLevelUpTable = {
     1: LevelUpRow(2, [])

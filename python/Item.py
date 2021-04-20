@@ -17,6 +17,15 @@ class Item:
     def getValue(self):
         return self.i_value
 
+    def __str__(self):
+        returnStr = f"{self.i_name}: "
+        for t in self.i_types:
+            returnStr += t + ", "
+        if len(returnStr) > 0:
+            returnStr = returnStr[:len(returnStr) - 1]
+        returnStr += f"   Value: {i_value} gp\n   ++ Description: {self.i_desc}"
+        return returnStr
+
     def isType(self, t):
         for i_type in i_types:
             if t == i_type:
@@ -25,10 +34,10 @@ class Item:
 
 class Weapon(Item):
 
-    def __init__(self, i_name, i_desc, i_value, i_types, numRolls, numSides, hitMod, dmgMod):
+    def __init__(self, i_name, i_desc, i_value, i_types, numRolls, numSides, hitMod = 0, dmgMod = 0):
         super().__init__(i_name, i_desc, i_value, i_types)
-        self.hitRoll = DiceRoll(1, 20, hitMod)
-        self.dmgRoll = DiceRoll(1, numSides, dmgMod)
+        self.hitRoll = DiceRoll.DiceRoll(1, 20, hitMod)
+        self.dmgRoll = DiceRoll.DiceRoll(1, numSides, dmgMod)
 
     def rollHit(self):
         return self.hitRoll.roll()
@@ -43,11 +52,3 @@ class Armor(Item):
 
     def getArmorClass(self):
         return self.armorClass
-
-items = []
-
-def getItem(itemName):
-    for i in items:
-        if i_name.lower() == itemName.lower():
-            return i
-    raise KeyError(f"No item of name {itemName}")
