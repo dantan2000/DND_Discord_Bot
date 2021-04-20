@@ -44,7 +44,7 @@ async def roll(ctx, *args):
         rollerName = openedCharacter.c_name
     except KeyError:
         rollerName = str(currPlayer).split('#')[0]
-
+        print(currPlayer)
     try:
         # Assuming the format is in 1d20 + 2 format, combine string and remove spaces
         rollStr = ""
