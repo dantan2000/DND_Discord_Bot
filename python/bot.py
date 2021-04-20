@@ -233,6 +233,21 @@ async def save(ctx):
 
 
 @client.command()
+async def deleteCharacter(ctx, *args):
+    global player_character
+    currPlayer = ctx.author
+    characterName = makeInputString(args)
+
+    try:
+        deletedCharacter = DB.openCharacter(characterName)
+        DB.deleteCharacter(deleteCharacter.c_name)
+        await ctx.send(f"{deleteCharacter.c_name} has been deleted.")
+    except Exception as e:
+        await ctx.send(f"Error: {e}")
+
+
+
+@client.command()
 async def createCharacter(ctx, *args):
     global player_character, player_callback
     currPlayer = ctx.author
@@ -249,6 +264,14 @@ async def createCharacter(ctx, *args):
     try:
         openedCharacter = player_character[currPlayer]
         await ctx.send(f"Cannot create character; you already have {openedCharacter.c_name} open!")
+        return
+    except KeyError:
+        pass
+
+    try:
+        DB.openCharacter(name)
+        await ctx.send(f"Cannot create character {name}. A character with that name already exists!")
+        return
     except KeyError:
         setStrMsg = makeSetAbilityScoreMsg(SETSTR, Types.STR)
         player_character[currPlayer] = Character.Character(name, currPlayer)
