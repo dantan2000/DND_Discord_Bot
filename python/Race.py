@@ -2,8 +2,9 @@ import Types
 
 class Race:
     
-    def __init__(self, r_name, r_size, r_speed, r_abilityMods, r_profs, r_languages, r_traits):
+    def __init__(self, r_name, r_desc, r_size, r_speed, r_abilityMods, r_profs, r_languages, r_traits):
         self.r_name = r_name
+        self.r_desc = r_desc
         self.r_size = r_size
         self.r_speed = r_speed
         self.r_abilityMods = r_abilityMods
@@ -13,6 +14,7 @@ class Race:
 
     def getInfo(self):
         ret = f"Race -- {self.r_name}"
+        ret += f"Description: {self.r_desc}"
         ret += f"\nSize - {self.r_size}"
         ret += f"\nSpeed - {self.r_speed}"
         ret += f"\nAbility Modifiers: {self.r_abilityMods}"

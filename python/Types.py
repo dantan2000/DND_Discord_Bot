@@ -6,6 +6,8 @@ INT = "Intelligence"
 WIS = "Wisdom"
 CHA = "Charisma"
 
+skillTypes = [STR, DEX, CON, INT, WIS, CHA]
+
 SPD = "Speed"
 AC = "Armor Class"
 
@@ -41,6 +43,8 @@ FIGHTER = "Fighter"
 SML = "Small"
 MED = "Medium"
 LRG = "Large"
+
+raceSizes = [SML, MED, LRG]
 
 # Races
 HUMAN = "Human"
