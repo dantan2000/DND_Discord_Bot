@@ -27,7 +27,7 @@ class Item:
         return returnStr
 
     def isType(self, t):
-        for i_type in i_types:
+        for i_type in self.i_types:
             if t == i_type:
                 return True
         return False

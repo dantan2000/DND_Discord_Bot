@@ -1,4 +1,5 @@
 import Item
+import Types
 
 class Inventory:
     def __init__(self, gold, items):
@@ -7,7 +8,8 @@ class Inventory:
         self.donnedArmor = []
 
     def donArmor(self, armorName):
-        for i in self.items:
+        for iName in self.items:
+            i = self.items[iName][0]
             if i.i_name.lower() == armorName.lower():
                 if (i.isType(Types.ARMOR) or i.isType(Types.SHIELD)):
                     if len(self.donnedArmor) == 1:
@@ -15,7 +17,7 @@ class Inventory:
                             self.donnedArmor.append(i)
                         else:
                             raise ValueError(f"Cannot don a {i.i_type}. Already have one equipped!")
-                    elif len(self.donnedArmor == 0):
+                    elif len(self.donnedArmor) == 0:
                         self.donnedArmor.append(i)
                 else:
                     raise ValueError(f"You try to don a {armorName}. Everyone around you looks at you strange because its not a piece of armor.")
@@ -23,7 +25,7 @@ class Inventory:
 
     def doffArmor(self, armorName):
         for a in self.donnedArmor:
-            if a.i_name.lower() == armornName.lower():
+            if a.i_name.lower() == armorName.lower():
                 self.donnedArmor.remove(a)
                 return
         raise ValueError(f"Could not doff - don't have a {armorName} equipped")
@@ -83,4 +85,4 @@ class Inventory:
             armorStr = armorStr[:len(armorStr) - 2]
         else:
             armorStr = "None"
-        return returnStr
+        return returnStr + armorStr

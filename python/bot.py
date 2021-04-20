@@ -678,10 +678,10 @@ async def don(ctx, *args):
         openedCharacter = player_character[currPlayer]
         # Check if there are arguments
         if len(args) == 0:
-            await ctx.send("Usage: $donArmor <armorName>")
+            await ctx.send("Usage: $don <armorName>")
             return
     except KeyError:
-        noOpenCharacter(ctx, "$donArmor", currPlayer)
+        noOpenCharacter(ctx, "$don", currPlayer)
 
     # Make armor name string
     armorName = ""
@@ -693,7 +693,8 @@ async def don(ctx, *args):
 
     try:
         openedCharacter.c_inv.donArmor(armorName)
-    except ValueError as e:
+        await ctx.send(f"{openedCharacter.c_name} donned a {armorName}!")
+    except (ValueError, KeyError) as e:
         await ctx.send(f"Error: {e}")
 
 
@@ -720,6 +721,7 @@ async def doff(ctx, *args):
 
     try:
         openedCharacter.c_inv.doffArmor(armorName)
+        await ctx.send(f"{openedCharacter.c_name} doffed a {armorName}!")
     except ValueError as e:
         await ctx.send(f"Error: {e}")
 
