@@ -6,6 +6,7 @@ import Item
 import Character
 import pymongo
 import config
+import Inventory
 
 myclient = pymongo.MongoClient(config.dbURL)
 mydb = myclient["discord"]
@@ -75,13 +76,28 @@ def splitRollString(rollStr):
 #     Skill.Skill(Types.SURVIVAL, "Survival checks.", Types.WIS)
 # ]
 
+def getSkillTypes(skillType):
+    ret = None
+    for s in Types.skillTypes:
+        if skillType.lower() == s.lower():
+            ret = s
+    return ret
+
 # TODO: Get Skill Checks from Database
 def getSkillCheck(skillName):
-    for s in skills:
-        # print(f"  --- comparing {skillName.lower()} to {s.s_name.lower()} ---\n       ++ {skillName.lower() == s.s_name.lower()}")
-        if s.s_name.lower() == skillName.lower():
-            return s
-    raise KeyError(f"Could not find skill {skillName}")
+    myquery = { "name": { "$regex": skillName, "$options" : "i"} }
+    skill = skills.find_one(myquery)
+
+    if skill is None:
+        raise ValueError(f"No skill found with name {skillName}")
+
+    skillType = getSkillTypes(skill["type"])
+
+    if skillType is None:
+        raise ValueError(f"Unexpected skill type")
+
+    return Skill.Skill(skill["name"], skill["name"], skillType)
+
 
 
 # abilities = [
@@ -103,46 +119,38 @@ def getSkillCheck(skillName):
 
 # TODO: get Abilities from DB
 def getAbility(abilityName):
-    for a in abilities:
-        if a.a_name.lower() == abilityName.lower():
-            return a
-    raise KeyError(f"Cannot find ability with name {abilityName}")
+    myquery = { "name": { "$regex": abilityName, "$options" : "i"} }
+    ability = abilities.find_one(myquery)
+
+    if ability is None:
+        raise ValueError(f"No ability found with name {abilityName}")
 
 
-# proficiencies = [
-#     Skill.Proficiency(Types.STR, "Proficiency for Strength Saving Throws."),
-#     Skill.Proficiency(Types.DEX, "Proficiency for Dexterity Saving Throws."),
-#     Skill.Proficiency(Types.CON, "Proficiency for Constitution Saving Throws."),
-#     Skill.Proficiency(Types.INT, "Proficiency for Intelligence Saving Throws."),
-#     Skill.Proficiency(Types.WIS, "Proficiency for Wisdom Saving Throws."),
-#     Skill.Proficiency(Types.CHA, "Proficiency for Charisma Saving Throws."),
-#     Skill.Proficiency(Types.ACROBATICS, "Proficiency for Acrobatics Skill Checks."),
-#     Skill.Proficiency(Types.ANIMAL_HANDLING, "Proficiency for Animal Handling Skill Checks."),
-#     Skill.Proficiency(Types.ARCANA, "Proficiency for Arcana Skill Checks."),
-#     Skill.Proficiency(Types.ATHLETICS, "Proficiency for Athletics Skill Checks."),
-#     Skill.Proficiency(Types.DECEPTION, "Proficiency for Deception Skill Checks."),
-#     Skill.Proficiency(Types.HISTORY, "Proficiency for History Skill Checks."),
-#     Skill.Proficiency(Types.INSIGHT, "Proficiency for Insight Skill Checks."),
-#     Skill.Proficiency(Types.INTIMIDATION, "Proficiency for Intimidation Skill Checks."),
-#     Skill.Proficiency(Types.INVESTIGATION, "Proficiency for Investigation Skill Checks."),
-#     Skill.Proficiency(Types.MEDICINE, "Proficiency for Medicine Skill Checks."),
-#     Skill.Proficiency(Types.NATURE, "Proficiency for Nature Skill Checks."),
-#     Skill.Proficiency(Types.PERCEPTION, "Proficiency for Perception Skill Checks."),
-#     Skill.Proficiency(Types.PERFORMANCE, "Proficiency for Performance Skill Checks."),
-#     Skill.Proficiency(Types.PERSUASION, "Proficiency for Persuasion Skill Checks."),
-#     Skill.Proficiency(Types.RELIGION, "Proficiency for Religion Skill Checks."),
-#     Skill.Proficiency(Types.SLIGHT_OF_HAND, "Proficiency for Slight of Hand Skill Checks."),
-#     Skill.Proficiency(Types.STEALTH, "Proficiency for Stealth Skill Checks."),
-#     Skill.Proficiency(Types.SURVIVAL, "Proficiency for Survival Skill Checks.")
-# ]
+    return Skill.Ability(ability["name"], ability["description"])
+
+
+proficiencies = [
+    Skill.Proficiency(Types.STR, "Proficiency for Strength Saving Throws."),
+    Skill.Proficiency(Types.DEX, "Proficiency for Dexterity Saving Throws."),
+    Skill.Proficiency(Types.CON, "Proficiency for Constitution Saving Throws."),
+    Skill.Proficiency(Types.INT, "Proficiency for Intelligence Saving Throws."),
+    Skill.Proficiency(Types.WIS, "Proficiency for Wisdom Saving Throws.")
+]
 
 
 # TODO: get Proficiencies from DB
-def getProficiency(proficiency):
-    for prof in proficiencies:
-        if prof.p_name.lower() == proficiency.lower():
-            return prof
-    raise KeyError(f"Cannot find proficiency with name {proficiency}")
+def getProficiency(proficiencyName):
+    for p in proficiencies:
+        if p.p_name.lower() == proficiencyName.lower():
+            return p
+    try:
+        tmpSkill = getSkill(proficiencyName)
+        return Skill.Proficiency(tmpSkill.s_type, f"Proficiency for {tmpSkill.s_type} Skill Checks")
+    except KeyError:
+        pass
+        # raise KeyError(f"Cannot find proficiency with name {proficiency}")
+    
+    return Skill.Proficiency(proficiencyName, proficiencyName)
 
 # items = [
 #     Item.Weapon("Longsword", "Proficiency with a longsword allows you to add your proficiency bonus to the attack roll for any attack you make with it.", 15, [Types.MARTIAL_WEAPON, Types.MELEE_WEAPON], 1, 8),
@@ -163,15 +171,7 @@ def getType(typeName):
 # TODO: Get items from DB
 def getItem(itemName):
     myquery = { "name": { "$regex": itemName, "$options" : "i"} }
-    print(f"Query: {myquery}")
     res = items.find_one(myquery)
-    # print(f"Got Items:")
-    # for r in res:
-    #     print(r)
-    # if len(items) == 0:
-    #     raise KeyError(f"Cannot find item {itemName}")
-    # if len(items) > 1:
-    #     raise KeyError(f"Mutiple items with name {itemName}")
     item = res
 
     if item is None:
@@ -213,12 +213,69 @@ def getItem(itemName):
 
 # TODO: Get classes from DB
 def getClass(className):
-    raise KeyError(f"No Class of name {className}")
+    myquery = { "name": { "$regex": className, "$options" : "i"} }
+    c_class = classes.find_one(myquery)
 
+    if c_class is None:
+        raise ValueError(f"No class found with name {className}")
+
+    profs = []
+    for s in c_class["saving throws"]:
+        try:
+            profs.append(getProficiency(s))
+        except Exception as e:
+            print(f"Error in getting profs for class: {e}")
+    for p in c_class["proficiencies"]:
+        profs.append(getProficiency(p))
+
+    skls = []
+    for s in c_class["skill options"]:
+        try:
+            skls.append(getSkillCheck(s))
+        except Exception as e:
+            print(f"Error in getting skill options for class: {e}")
+    
+
+
+    return Class.Class(c_class["name"], c_class["description"], int(c_class["hit dice"]), profs, int(c_class["num skills"]), skls, c_class["level up table"], c_class["spellcasting ability"])
+
+def getSizeTypes(sz):
+    ret = None
+    for s in Types.raceSizes:
+        if s.lower() == sz.lower():
+            ret = s
+    return ret
 
 # TODO: Get races from DB
 def getRace(raceName):
-    raise KeyError(f"No Race of name {raceName}")
+    myquery = { "name": { "$regex": raceName, "$options" : "i"} }
+    race = races.find_one(myquery)
+
+    if race is None:
+        raise ValueError(f"No race found with name {skillName}")
+
+    abilityMods = {
+        Types.STR: int(race["strength"]),
+        Types.STR: int(race["dexterity"]),
+        Types.STR: int(race["constitution"]),
+        Types.STR: int(race["intelligence"]),
+        Types.STR: int(race["wisdom"]),
+        Types.STR: int(race["charisma"])
+    }
+
+    size = getSizeTypes(race["size"])
+    if size is None:
+        raise ValueError(f"Unexpected size type.")
+
+    abilities = []
+    for a in abilities:
+        try:
+            abilities.append(getAbility(a))
+        except Exception as e:
+            print(f"Error in finding abilities for race: {e}")
+    
+
+    return Race.Race(race["name"], race["description"], size, int(race["speed"]), abilityMods, [], [], abilities)
 
 
 alignments = [
@@ -243,17 +300,84 @@ def getAlignment(alignmentName):
 
 
 # TODO: Get character from DB and convert it into Character
-def openCharacter(characterName):
-    raise KeyError(f"Cannot find a character named {characterName}")
+def openCharater(characterName):
+    myquery = { "name": { "$regex": raceName, "$options" : "i"} }
+    character = characters.find_one(myquery)
+
+    if character is None:
+        raise KeyError(f"No character found with name {characterName}")
+
+    inv = Inventory(character[gold], {})
+    for item_qty in character["inventory"]:
+        try:
+            item = getItem(item_qty[0])
+            inv.addItem(item, int(item_qty[1]))
+        except Exception as e:
+            print(f"Error while opening character in adding items to character's invenotry: {e}") 
+    
+    profs = []
+    for p in character["proficiencies"]:
+        profs.append(getProficiency(p))
+    
+
+    abls = []
+    for a in character["abilities"]:
+        try:
+            abls.append(getAbility(a))
+        except Exception as e:
+            print(f"Error while opening character in adding abilities to character: {e}") 
+        
+
+    return Character.Character(character["name"], character["user"], getClass(character["class"]), getRace(character["race"]), None, int(character["level"]), int(character["strength"]), int(character["dexterity"]), int(character["constitution"]), int(character["intelligence"]), int(character["wisdom"]), int(character["charisma"]), int(character["max health"]), int(character["current health"]), inv, character["current spell slots"], abls, profs)
 
 # TODO: Save a character to the DB
 def saveCharacter(character):
+    myquery = { "name": { "$regex": raceName, "$options" : "i"} }
     if not character.isComplete():
         raise ValueError(f"Cannot save character -- Character creation is not complete.\n  - Remaining Requirements:\n{character.completeRequirements()}")
-    raise NotImplementedError("Save character not implemented.")
+    
+    deleteCharacter(character.c_name)
+
+    profs = []
+    for p in character.c_profs:
+        profs.append(p.p_name)
+
+    abls = []
+    for a in character.c_abil:
+        abls.append(a.a_name)
+
+    doc = {
+        "user": character.p_name,
+        "name": character.c_name,
+        "race": character.c_race.r_name,
+        "class": character.c_class.className,
+        "level": character.c_lvl,
+        "max health": character.c_maxHit,
+        "current health": character.c_currHit,
+        "strength": character.c_str,
+        "dexterity": character.c_dex,
+        "constitution": character.c_con,
+        "intelligence": character.c_int,
+        "wisdom": character.c_wis,
+        "charisma": character.c_cha,
+        "proficiencies": profs,
+        "spells": [],
+        "abilities": abls,
+        "current spell slots": character.c_spellSlots,
+        "gold": character.c_inv.gold,
+        "equipped armor": character.c_inv.donnedArmor,
+        "equipped weapons": [],
+        "inventory": character.c_inv.items
+    }
+
+    characters.insert_one(doc)
+
+
 
 def deleteCharacter(characterName):
-    raise NotImplementedError("Delete character not implemented.")
+    myquery = { "name": { "$regex": character.c_name, "$options" : "i"} }
+    return characters.delete_many(myquery)
+    # raise NotImplementedError("Delete character not implemented.")
 
 
 # TODO: Get Item/Ability/Class/etc. info from database
