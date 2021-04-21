@@ -19,6 +19,7 @@ To Complete this Project We Used:
         - Imported Collections using Json files
         - Read/Write to Tables using Python
 
-[Link to our NoSQL Design Diagram]("../Updated Model.pdf")
+Our NoSQL Database Diagram is Under "Updated Model.pdf".
+
 
     

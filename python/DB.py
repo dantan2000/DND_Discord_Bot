@@ -333,7 +333,7 @@ def saveCharacter(character):
     doc = {
         "user": character.p_name,
         "name": character.c_name,
-        "race": character.c_race.r_name,
+        "race": character.c_race,
         "class": character.c_class.className,
         "level": character.c_lvl,
         "max health": character.c_maxHit,

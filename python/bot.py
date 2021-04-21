@@ -217,7 +217,6 @@ async def close(ctx, *args):
 async def save(ctx):
     global player_character
     currPlayer = ctx.author
-    save = makeInputString(args)
     # Check if player already has a character open
     try:
         currCharacter = player_character[currPlayer]
@@ -277,7 +276,7 @@ async def createCharacter(ctx, *args):
         await ctx.send(f"Cannot create character {name}. A character with that name already exists!")
         return
     except KeyError:
-        player_character[currPlayer] = Character.Character(name, currPlayer)
+        player_character[currPlayer] = Character.Character(name, str(currPlayer))
         await ctx.send(f"Creating character {name}. Begin customizing!")
 
 @client.command()
@@ -468,7 +467,7 @@ async def setClass(ctx, className):
     try:
         newClass = DB.getClass(className)
         if openedCharacter.c_class is None:
-            openedCharacter.c_class = newClass.className
+            openedCharacter.c_class = newClass
             await ctx.send(f"{openedCharacter.c_name} is a {newClass.className}")
         else:
             await ctx.send(f"{openedCharacter.c_name} is already a {openedChacarter.c_class}")
@@ -591,7 +590,7 @@ async def addItem(ctx, *args):
         item = DB.getItem(itemName)
         openedCharacter.c_inv.addItem(item, qty)
         await ctx.send(f"{openedCharacter.c_name} received a {item.i_name}!")
-    except KeyError:
+    except (KeyError, ValueError):
         await ctx.send(f"Error: cannot find item: \"{itemName}\"")
     
 @client.command()
