@@ -117,7 +117,50 @@ Our NoSQL Database Diagram is Under "Updated Model.pdf".
                 - type: the type of damage being dealt.
             - minimum level (optional): The minimum level this spell can be cast at.
 
+    
+User Flow:
+    When users first put this discord bot within their discord server. There will be a few commands available by default, but
+    many will begin using this discord bot by creating their DnD character. This will be done with the $createCharacter command.
+        - $createCharacter Name
+    This creates the template for a player character. Users can then call a series of functions that allow them to set the values of their characters. Discord's Bot API does not allow for a traditional stdout, wait and check for user stdin input, which is why users must all these methods individually. However before a character is pushed to the database, it will check whether a character has all necessary fields and is complete, and will notify the user which fields they must fill out.
+    The following functions must be called in order to create a full and complete character:
 
+        - $setLevel(level): Sets the open character's level to the given level.
+        - $setStr(score): Set's the character's Strength score.
+        - $setDex(score): Set's the character's Dexterity score.
+        - $setCon(score): Set's the character's Constitution score.
+        - $setInt(score): Set's the character's Intelligence score.
+        - $setWis(score): Set's the character's Wisdom score.
+        - $setCha(score): Set's the character's Charisma score.
+        - $setMaxHP(hp): Set's the character's maximum health.
+        - $setRace(race): Set's the character's race. Race must be present in race collection.
+        - $setClass(ctx, className): Set's the character's class. Class must be present in class collection.
+        - $addMaxHP(hp): Add's the given value to the character's maximum health.
+        - $addAbilityFeature(*args): Adds the given ability to the character's abilities.
+            -can be called as $addAbility and $addFeature
+        - $addProficiency(*args): Adds the given proficiency to the character's proficiencies.
+        - $takeDmg(hp): Removes the given amount from the character's current HP.
+        - $heal(hp): Adds the given amount from the character's current HP.
+        - $addItem(*args): Adds the given item into the character's inventory.
+        - $removeItem(*args): Removes the given item from the character's inventory
+        - $addGold(qty): Gives the amount of gold to the character.
+        - $removeGold(qty): Removes the amount of gold from the character.
+        - $don(*args): Equips the given armor.
+        - $doff(*args): Unequips the given armor.
+        - $isComplete(): Checks whether the character is complete, valid, and ready to be added or updated in the database.
+        - $dumpCharacter(): Prints all information about the open character.
+
+    Once a player's character is complete the user can call the $save and $close commands to save their changes and save the new character to the database. If they wish to use the character again, they can call $open(charactername). Each user can only have one character active at a time. Users can also call $deleteCharacter(charactername) if they wish to remove their character from the database. 
+
+    The discord bot also contains a $roll command. When a user does not have a character open, they can use the $roll in the following format:
+        $roll 1d20 + x
+    where the number before "d" indicates the number of dice to roll, and the number after indicates the number of sides on the dice. Any integer x can also be added to the roll. If a player has a character currently open, they can also use the roll command to roll any skills present in DnD 5e. For example:
+        $roll Int
+        $roll Animal Handling
+
+
+Future Work
+    Our current planned uses of the database is to help people that are running Dungeons and Dragons campaigns through discord servers. The database would be able to store information on player character's, and give descriptions for available Classes, Races, Abilities, Spells, Weapons, Armor, and other Items. Our goal is to make playing a DnD online an easier experience by integrating parts of the Tabletop RPG right into the server, instead of having users use third party websites and discord at the same time. 
         
             
 
