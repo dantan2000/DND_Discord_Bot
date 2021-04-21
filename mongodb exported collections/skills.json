@@ -1,0 +1,145 @@
+[{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039002"
+  },
+  "name": "Strength",
+  "type": "Strength"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039003"
+  },
+  "name": "Dexterity",
+  "type": "Dexterity"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039004"
+  },
+  "name": "Constitution",
+  "type": "Constitution"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039005"
+  },
+  "name": "Intelligence",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039006"
+  },
+  "name": "Wisdom",
+  "type": "Wisdom"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039007"
+  },
+  "name": "Charisma",
+  "type": "Charisma"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039008"
+  },
+  "name": "Acrobatics",
+  "type": "Dexterity"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039009"
+  },
+  "name": "Animal Handling",
+  "type": "Wisdom"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900a"
+  },
+  "name": "Arcana",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900b"
+  },
+  "name": "Athletics",
+  "type": "Strength"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900c"
+  },
+  "name": "Deception",
+  "type": "Charisma"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900d"
+  },
+  "name": "History",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900e"
+  },
+  "name": "Insight",
+  "type": "Wisdom"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c2403900f"
+  },
+  "name": "Intimidation",
+  "type": "Charisma"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039010"
+  },
+  "name": "Investigation",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039011"
+  },
+  "name": "Medicine",
+  "type": "Wisdom"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039012"
+  },
+  "name": "Nature",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039013"
+  },
+  "name": "Perception",
+  "type": "Wisdom"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039014"
+  },
+  "name": "Performance",
+  "type": "Charisma"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039015"
+  },
+  "name": "Persuasion",
+  "type": "Charisma"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039016"
+  },
+  "name": "Religion",
+  "type": "Intelligence"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039017"
+  },
+  "name": "Sleight of Hand",
+  "type": "Dexterity"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039018"
+  },
+  "name": "Stealth",
+  "type": "Dexterity"
+},{
+  "_id": {
+    "$oid": "607f5a1dfe52f02c24039019"
+  },
+  "name": "Survival",
+  "type": "Wisdom"
+}]

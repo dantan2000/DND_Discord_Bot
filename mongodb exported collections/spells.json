@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501a"
+  },
+  "name": "Eldritch Blast",
+  "casting time": "1 Action",
+  "range": 120,
+  "description": "Ranged spell attack that does 1d10 force damage on a hit",
+  "damage": {
+    "amount": "1d10",
+    "type": "force"
+  },
+  "is_cantrip": true
+},{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501b"
+  },
+  "name": "Message",
+  "casting time": "1 Action",
+  "range": 120,
+  "description": "Whisper a message to one creature",
+  "is_cantrip": true
+},{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501c"
+  },
+  "name": "Charm Person",
+  "casting time": "1 Action",
+  "range": 30,
+  "description": "Creature must make a wisdom saving throw or be charmed by you for an hour.",
+  "is_cantrip": false,
+  "min level": 1
+},{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501d"
+  },
+  "name": "Feather Fall",
+  "casting time": "1 Reaction",
+  "range": 60,
+  "description": "Choose 5 creatures that will take no fall damage if they land before the spell ends.",
+  "is_cantrip": false,
+  "min level": 1
+},{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501e"
+  },
+  "name": "Flaming Sphere",
+  "casting time": "1 Action",
+  "range": 60,
+  "description": "Creatures ending their turn within the 5ft sphere must roll a Dexterity saving throw to avoid damage.",
+  "damage": {
+    "amount": "2d6",
+    "type": "fire"
+  },
+  "is_cantrip": false,
+  "min level": 2
+},{
+  "_id": {
+    "$oid": "607dc6ad2800f055447d501f"
+  },
+  "name": "Blink",
+  "casting time": "1 Action",
+  "range": 0,
+  "description": "Roll a d20 at the end of each turn, if 11 or higher, you vanish into the Ethereal Plane.",
+  "is_cantrip": false,
+  "min level": 3
+}]
