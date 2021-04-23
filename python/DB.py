@@ -8,6 +8,7 @@ import pymongo
 import config
 import Inventory
 import Race
+import Spell
 
 myclient = pymongo.MongoClient(config.dbURL)
 mydb = myclient["discord"]
@@ -311,7 +312,7 @@ def openCharacter(characterName):
             print(f"Error while opening character in adding abilities to character: {e}") 
         
 
-    return Character.Character(character["name"], character["user"], getClass(character["class"]), getRace(character["race"]), None, int(character["level"]), int(character["strength"]), int(character["dexterity"]), int(character["constitution"]), int(character["intelligence"]), int(character["wisdom"]), int(character["charisma"]), int(character["max health"]), int(character["current health"]), inv, character["current spell slots"], abls, profs)
+    return Character.Character(character["name"], character["user"], getClass(character["class"]), getRace(character["race"]), None, int(character["level"]), int(character["strength"]), int(character["dexterity"]), int(character["constitution"]), int(character["intelligence"]), int(character["wisdom"]), int(character["charisma"]), int(character["max health"]), int(character["current health"]), inv, character["current spell slots"], abls, profs, character["proficiency bonus"])
 
 # TODO: Save a character to the DB
 def saveCharacter(character):
@@ -328,12 +329,12 @@ def saveCharacter(character):
 
     inv = []
     for iName in character.c_inv.items:
-        inv.append([iName, character.c_inv.items[iName][1]])
+        inv.append([iName.i_name, character.c_inv.items[iName][1]])
 
     doc = {
         "user": character.p_name,
         "name": character.c_name,
-        "race": character.c_race,
+        "race": character.c_race.r_name,
         "class": character.c_class.className,
         "level": character.c_lvl,
         "max health": character.c_maxHit,
@@ -349,7 +350,7 @@ def saveCharacter(character):
         "abilities": abls,
         "current spell slots": character.c_spellSlots,
         "gold": character.c_inv.gold,
-        "equipped armor": character.c_inv.donnedArmor,
+        "equipped armor": [],
         "equipped weapons": [],
         "inventory": inv
     }
@@ -369,7 +370,76 @@ def deleteCharacter(characterName):
     # raise NotImplementedError("Delete character not implemented.")
 
 
+
+def getSpell(spellName):
+    myquery = { "name": { "$regex": spellName, "$options" : "i"} }
+    spell = spells.find_one(myquery)
+
+
+    if spell is None:
+        raise ValueError(f"No spell found with name {spellName}")
+
+
+    numRolls = 0
+    numSides = 0
+    mod = 0
+
+    try:
+        dmg = spell["damage"]
+        roll = splitRollString(dmg["amount"])
+        numRolls = roll[0]
+        numSides = roll[1]
+        mod = roll[2]
+    except KeyError:
+        pass
+
+    if spell["is_cantrip"]:
+        lvl = "Cantrip"
+    else:
+        lvl = spell["min level"]
+
+    return Spell.Spell(spell["name"], spell["description"], lvl, spell["casting time"], int(spell["range"]), numRolls, numSides, [mod])
+    
+
+
 # TODO: Get Item/Ability/Class/etc. info from database
 def getInfo(name):
-    item = getItem(name)
-    return item.getInfo()
+    obj = None
+
+    
+    try:
+        obj = getAbility(name)
+    except Exception:
+        pass
+
+    try:
+        obj = getClass(name)
+    except Exception:
+        pass
+
+    try:
+        obj = getItem(name)
+    except Exception:
+        pass
+
+    try:
+        obj = getRace(name)
+    except Exception:
+        pass
+
+    
+    try:
+        obj = getSkillCheck(name)
+    except Exception:
+        pass
+
+    
+    try:
+        obj = getSpell(name)
+    except Exception:
+        pass
+
+    if obj is None:
+        raise KeyError(f"Nothing found with name {name}")
+    else:
+        return obj.getInfo()

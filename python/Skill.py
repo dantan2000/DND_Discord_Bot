@@ -13,6 +13,9 @@ class Skill:
         ret = f"Skill -- {self.s_name}   Type: {self.s_type}"
         ret += f"\n   Description: {self.s_desc}"
         return ret
+        
+    def __str__(self):
+        return self.s_name
 
     
 class Ability:
@@ -24,6 +27,9 @@ class Ability:
         ret = f"Ability -- {self.a_name}"
         ret += f"\n   Description: {self.a_desc}"
         return ret
+
+    def __str__(self):
+        return self.a_name
 
 # Combined with Ability
 # class Feature:
@@ -42,6 +48,8 @@ class Proficiency:
         self.p_name = p_name
         self.p_desc = p_desc
         
+    def __str__(self):
+        return self.p_name
 
     def getInfo(self):
         ret = f"Proficiency -- {self.p_name}   Type: {self.p_type}"

@@ -239,15 +239,18 @@ async def deleteCharacter(ctx, *args):
 
     try:
         deletedCharacter = DB.openCharacter(characterName)
-        DB.deleteCharacter(deleteCharacter.c_name)
-        await ctx.send(f"{deleteCharacter.c_name} has been deleted.")
+        DB.deleteCharacter(deletedCharacter.c_name)
+        await ctx.send(f"{deletedCharacter.c_name} has been deleted.")
     except Exception as e:
         await ctx.send(f"Error: {e}")
 
 @client.command()
 async def getInfo(ctx, *args):
     name = makeInputString(args)
-    await ctx.send(DB.getInfo(name))
+    try:
+        await ctx.send(DB.getInfo(name))
+    except KeyError as e:
+        await ctx.send(f"Error: {e}")
 
 @client.command()
 async def createCharacter(ctx, *args):

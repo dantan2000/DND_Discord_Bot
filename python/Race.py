@@ -19,8 +19,8 @@ class Race:
         ret += f"\nSpeed - {self.r_speed}"
         ret += f"\nAbility Modifiers: {self.r_abilityMods}"
         ret += f"\nProficiencies: {self.r_profs}"
-        ret += f"Languages: {self.r_languages}"
-        ret += f"Traits: {self.r_traits}"
+        ret += f"\nLanguages: {self.r_languages}"
+        ret += f"\nTraits: {self.r_traits}"
         return ret
 
     def __str__(self):

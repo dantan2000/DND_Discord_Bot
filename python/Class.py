@@ -35,8 +35,22 @@ class Class:
         ret = f"Class -- {self.className}"
         ret += f"\n   Description: {self.desc}"
         ret += f"\n   Hit Die: d{self.hitDie}"
-        ret += f"\n   Proficiencies: {self.proficiencies}"
-        ret += f"\n   Skills: (Pick {self.numSkills}) {self.skills}"
+        profString = ""
+        for p in self.proficiencies:
+            profString += str(p) + ", "
+        if len(profString) == 0:
+            profString = "None"
+        else:
+            profString = profString[:len(profString) - 2]
+        ret += f"\n   Proficiencies: {profString}"
+        skillString = ""
+        for s in self.skills:
+            skillString += str(s) + ", "
+        if len(skillString) == 0:
+            skillString = "None"
+        else:
+            skillString = skillString[:len(skillString) - 2]
+        ret += f"\n   Skills: (Pick {self.numSkills}) {skillString}"
         if self.spellcastAbility is not None:
             ret += f"\n   Spellcasting Ability: {self.spellcastAbility}"
         return ret

@@ -1,6 +1,7 @@
 import Inventory
 import SpellSlots
 import Types
+import copy
 
 def calculateMod(skillPoints):
     mod = (skillPoints - 10 + .5) // 2
@@ -15,7 +16,7 @@ class Alignment:
 
 class Character:
 
-    def __init__(self, c_name, p_name, c_class = None, c_race = None, c_alignment = None, c_lvl = 0, c_str = 0, c_dex = 0, c_con = 0, c_int = 0, c_wis = 0, c_cha = 0, c_maxHit = 0, c_currHit = 0, c_inv = Inventory.Inventory(0, {}), c_spellSlots = SpellSlots.makeSpellSlots(), c_abil = [], c_profs = [], c_profBonus = 0):
+    def __init__(self, c_name, p_name, c_class = None, c_race = None, c_alignment = None, c_lvl = 0, c_str = 0, c_dex = 0, c_con = 0, c_int = 0, c_wis = 0, c_cha = 0, c_maxHit = 0, c_currHit = 0, c_inv = copy.deepcopy(Inventory.Inventory(0, {})), c_spellSlots = SpellSlots.makeSpellSlots(), c_abil = [], c_profs = [], c_profBonus = 0):
         self.c_name = c_name
         self.p_name = p_name
         self.c_class = c_class
@@ -115,6 +116,7 @@ class Character:
 
     def isProficient(self, profName):
         for prof in self.c_profs:
+            print(f"{prof.p_name.lower()}  ==  {profName.lower()}")
             if prof.p_name.lower() == profName.lower():
                 return True
         return False
