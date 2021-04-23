@@ -1,0 +1,117 @@
+[{
+  "_id": {
+    "$oid": "607f6fff85b54e4b94641923"
+  },
+  "user": "PlaneLover36#3530",
+  "name": "Kid Wiz",
+  "race": "Human",
+  "class": "Wizard",
+  "level": 1,
+  "max health": 7,
+  "current health": 4,
+  "strength": 8,
+  "dexterity": 12,
+  "constitution": 12,
+  "intelligence": 15,
+  "wisdom": 14,
+  "charisma": 14,
+  "proficiencies": [
+    "Intelligence",
+    "Wisdom",
+    "Arcana",
+    "Investigation",
+    "Dagger",
+    "Quarterstaff",
+    "Light Crossbow"
+  ],
+  "spells": [],
+  "abilities": [
+    "Spellcasting",
+    "Arcane Recovery"
+  ],
+  "current spell slots": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "gold": 2650,
+  "equipped armor": [],
+  "equipped weapons": [],
+  "inventory": [
+    [
+      "Dagger",
+      1
+    ],
+    [
+      "Explorer's Pack",
+      1
+    ],
+    [
+      "Spellbook",
+      1
+    ]
+  ]
+},{
+  "_id": {
+    "$oid": "607f77f4055741a072479fae"
+  },
+  "user": "PlaneLover36#3530",
+  "name": "Dorogon",
+  "race": "Human",
+  "class": "Fighter",
+  "level": 1,
+  "max health": 12,
+  "current health": 12,
+  "strength": 17,
+  "dexterity": 16,
+  "constitution": 15,
+  "intelligence": 10,
+  "wisdom": 12,
+  "charisma": 10,
+  "proficiencies": [
+    "Strength",
+    "Strength",
+    "Consitution",
+    "Athletics",
+    "Perception",
+    "Simple Weapon",
+    "Martial Weapon"
+  ],
+  "spells": [],
+  "abilities": [
+    "Fighting Style",
+    "Second Wind"
+  ],
+  "current spell slots": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "gold": 100,
+  "equipped armor": [],
+  "equipped weapons": [],
+  "inventory": [
+    [
+      "BattleAxe",
+      1
+    ],
+    [
+      "Leather Armor",
+      1
+    ]
+  ]
+}]

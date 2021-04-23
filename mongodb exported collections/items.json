@@ -1,0 +1,195 @@
+[{
+  "_id": {
+    "$oid": "607dc6832800f055447d5008"
+  },
+  "name": "Quarterstaff",
+  "type": "weapon",
+  "weapontype": "simple",
+  "damage": {
+    "amount": "1d6",
+    "type": "bludgeoning"
+  },
+  "properties": [
+    "Versatile (1d8)"
+  ],
+  "description": "A quarterstaff, also short staff or simply staff, is a shaft of hardwood from 6 to 9 feet long, sometimes with a metal tip, ferrule, or spike at one or both ends."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5009"
+  },
+  "name": "Dagger",
+  "type": "weapon",
+  "weapontype": "simple",
+  "damage": {
+    "amount": "1d4",
+    "type": "piercing"
+  },
+  "properties": [
+    "Finesse",
+    "Light",
+    "Thrown(20/60)"
+  ],
+  "description": "A dagger is a knife with a very sharp point and usually two sharp edges, typically designed or capable of being used as a thrusting or stabbing weapon."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500a"
+  },
+  "name": "Component Pouch",
+  "type": "equipment",
+  "description": "Small leather pouch that holds all material components needed to cast spells"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500b"
+  },
+  "name": "Arcane Focus",
+  "type": "equipment",
+  "description": "Special item that can be used to channel the power of arcane spells"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500c"
+  },
+  "name": "Scholar's Pack",
+  "type": "equipment",
+  "description": "Contains backpack, a book of lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand, and a small knife"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500d"
+  },
+  "name": "Explorer's Pack",
+  "type": "equipment",
+  "description": "Contains backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations,a waterskin, and a 50ft rope"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500e"
+  },
+  "name": "Spellbook",
+  "type": "equipment",
+  "description": "A leather-bound tome with 100 blank vellum pages suitable for recording spells"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d500f"
+  },
+  "name": "Chainmail",
+  "type": "armor",
+  "description": "Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.",
+  "armortype": "heavy",
+  "armorclass": 16
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5010"
+  },
+  "name": "Leather Armor",
+  "type": "armor",
+  "description": "The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil.",
+  "armortype": "light",
+  "armorclass": 11
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5011"
+  },
+  "name": "Longbow",
+  "type": "weapon",
+  "weapontype": "martial",
+  "damage": {
+    "amount": "1d8",
+    "type": "piercing"
+  },
+  "properties": [
+    "Ammunition (150/600)",
+    "Heavy",
+    "Two Handed"
+  ],
+  "description": "A longbow is a type of bow that is tall – roughly equal to the height of the user – allowing the archer a fairly long draw. A longbow is not significantly recurved. Its limbs are relatively narrow so that they are circular or D-shaped in cross section."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5012"
+  },
+  "name": "Arrow",
+  "type": "equipment",
+  "description": "Ammunition for bows"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5013"
+  },
+  "name": "Bolts",
+  "type": "equipment",
+  "description": "Ammunition for crossbows"
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5014"
+  },
+  "name": "Shield",
+  "type": "armor",
+  "armortype": "shield",
+  "armorclass": 2
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5015"
+  },
+  "name": "Light Crossbow",
+  "type": "weapon",
+  "weapontype": "simple",
+  "damage": {
+    "amount": "1d8",
+    "type": "piercing"
+  },
+  "properties": [
+    "Ammunition (range 80/320)",
+    "loading",
+    "two-handed"
+  ],
+  "description": "You draw a light crossbow back by pulling a lever. Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a –2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5016"
+  },
+  "name": "Handaxe",
+  "type": "weapon",
+  "weapontype": "simple",
+  "damage": {
+    "amount": "1d6",
+    "type": "slashing"
+  },
+  "properties": [
+    "Light",
+    "Thrown(20/60)"
+  ],
+  "description": "A small one-handed axe. Useful for dual weilding."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5017"
+  },
+  "name": "BattleAxe",
+  "type": "weapon",
+  "weapontype": "martial",
+  "damage": {
+    "amount": "1d8",
+    "type": "slashing"
+  },
+  "properties": [
+    "Versatile (1d10)"
+  ],
+  "description": "A battleaxe is a military one-handed melee weapon in the axe weapon group. A battleaxe is a versatile weapon, so medium characters may wield it two-handed to deal 1 extra damage. Small characters must wield it two-handed, and they deal no extra damage for doing so."
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5018"
+  },
+  "name": "Lance",
+  "type": "weapon",
+  "weapontype": "martial",
+  "damage": {
+    "amount": "1d12",
+    "type": "piercing"
+  },
+  "properties": [
+    "Reach",
+    "Special"
+  ]
+},{
+  "_id": {
+    "$oid": "607dc6832800f055447d5019"
+  },
+  "name": "Dungeoneer's Pack",
+  "type": "equipment",
+  "description": "Includes a backpack, a crowbar, a hammer, 10 pitons, 10 torches, a tinderbox, 10 days of rations, a waterskin and 50 feet of rope."
+}]
